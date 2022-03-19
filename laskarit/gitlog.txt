@@ -1,0 +1,83 @@
+
+
+    tehtävä 11
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 3e40b58c62ee0a9c879a36061adde5c4a8fa5be1
+Author: Mikael Slotboom <mikael.slotboom@helsinki.fi>
+Date:   Sat Mar 19 19:46:19 2022 +0200
+
+    lisätty hakemisto tiedostoja
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 881f621d455591a80f56e0e9a6bd2716177cf658
+Author: Mikael Slotboom <mikael.slotboom@helsinki.fi>
+Date:   Sat Mar 19 19:33:11 2022 +0200
+
+    tiedostot muutettu
+
+ eka.txt    | 1 +
+ kolmas.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 50db6f31ddd49ece143f3ab46fd6c24ca3747106
+Author: Mikael Slotboom <mikael.slotboom@helsinki.fi>
+Date:   Sat Mar 19 19:31:09 2022 +0200
+
+    muutettu tiedosto.txt nimeä
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit ccaa84eff54d409683e6aaff16b42b5332fc809f
+Author: Mikael Slotboom <mikael.slotboom@helsinki.fi>
+Date:   Sat Mar 19 19:28:36 2022 +0200
+
+    toinen.txt poistettu
+
+ toinen.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 42023563808dbd7f3b54f7d37c48e04772e485b0
+Author: Mikael Slotboom <mikael.slotboom@helsinki.fi>
+Date:   Sat Mar 19 19:24:23 2022 +0200
+
+    Hakemisto stuff luotu
+
+ stuff/eeeee.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 1aa93614b18f05e42b10815665ba94209cf4889d
+Author: Mikael Slotboom <mikael.slotboom@helsinki.fi>
+Date:   Sat Mar 19 19:23:12 2022 +0200
+
+    kolmas.txt lisätty
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 5bc4f9746aa19a30462d4c77a82ccf9f9cceb42b
+Author: Mikael Slotboom <mikael.slotboom@helsinki.fi>
+Date:   Sat Mar 19 19:20:38 2022 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 2873599540df9f432f4d1cee3ee906b2fe829521
+Author: Mikael Slotboom <mikael.slotboom@helsinki.fi>
+Date:   Sat Mar 19 19:13:30 2022 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
