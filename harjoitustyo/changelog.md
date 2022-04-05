@@ -1,3 +1,4 @@
+/assets/robot.png on Helsingin Yliopiston Ohjelmoinnin Jatkokurssilta.
 ## Viikko 3
 
 - Lisätty Robotti
