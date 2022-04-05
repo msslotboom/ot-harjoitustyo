@@ -10,8 +10,8 @@ class Robot(pygame.sprite.Sprite):
         )
 
         self.rect = self.image.get_rect()
-        self.x = self.rect.x
-        self.y = self.rect.y
+        # self.x = self.rect.x
+        # self.y = self.rect.y
         self.width = self.rect[2]
         self.length = self.rect[3]
 

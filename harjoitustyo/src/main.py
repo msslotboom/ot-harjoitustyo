@@ -20,7 +20,6 @@ def main():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
                     gamelevel.robot.move_left()
-                    print(gamelevel.robot.x)
                 if event.key == pygame.K_RIGHT:
                     gamelevel.robot.move_right()
 
