@@ -10,14 +10,32 @@ class Robot(pygame.sprite.Sprite):
         )
 
         self.rect = self.image.get_rect()
-        # self.x = self.rect.x
-        # self.y = self.rect.y
         self.width = self.rect[2]
         self.length = self.rect[3]
 
-    def move_left(self):
-        self.rect.x -= 5
+        self.dx = 0
+        self.dy = 0
 
-    def move_right(self):
-        self.rect.x += 5
+    def refresh(self):
+        self.rect.x += self.dx
+        self.rect.y += self.dy
+
+    def set_x_speed(self, newdx):
+        self.dx = newdx
+
+    def set_y_speed(self, newdy):
+        self.dx = newdy
+
+    def refresh_position(self):
+        self.rect.x += self.dx
+        self.rect.y += self.dy
+ 
+
+    # Obselete
+
+    # def move_left(self):
+    #     self.rect.x -= 5
+
+    # def move_right(self):
+    #     self.rect.x += 5
         
