@@ -26,10 +26,19 @@ class Robot(pygame.sprite.Sprite):
     def set_y_speed(self, newdy):
         self.dx = newdy
 
-    def refresh_position(self):
+    def refresh_position_x(self):
         self.rect.x += self.dx
+
+    def refresh_position_y(self):
         self.rect.y += self.dy
+
+    def refresh_position_x_undo(self):
+        self.rect.x += -self.dx
+
+    def refresh_position_y_undo(self):
+        self.rect.y += -self.dy
  
+    
 
     # Obselete
 
