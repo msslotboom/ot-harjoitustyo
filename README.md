@@ -1,7 +1,8 @@
 # Ohjelmistotekniikka
-Course for the **University of Helsinki**, *2022* 
+Course for the **University of Helsinki**, 2022 
 ## Peli
 Pelissä voi liikuttaa hahmoa. Pelin tarkoitus on päästä maaliin vihollisten ja esteiden ohi.
+
 [Vaatimusmäärittely](https://github.com/msslotboom/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
 [Changelog](https://github.com/msslotboom/ot-harjoitustyo/blob/master/harjoitustyo/changelog.md)
