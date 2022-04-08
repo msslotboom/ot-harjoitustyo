@@ -14,9 +14,9 @@ class Robot(pygame.sprite.Sprite):
         self.height = self.rect[3]
         self.dx = 0
         self.dy = 0
-        
-        self.rect.x = 200
-        self.rect.y = 200
+        print(self.height, self.width)
+        #self.rect.x = 200
+        #self.rect.y = 200
 
     # def refresh(self):
     #     self.rect.x += self.dx
@@ -40,11 +40,16 @@ class Robot(pygame.sprite.Sprite):
     def refresh_position_y_undo(self):
         self.rect.y += -self.dy
 
+    def cancel_robot_x_movement(self):
+        self.set_x_speed(0)
+
+    def cancel_robot_y_movement(self):
+        self.set_y_speed(0)
 
     def robot_update_pos(self, screensize):
         levelheight, levelwidth = screensize[0], screensize[1]
         self.refresh_position_x()
-        if self.rect.x < 0 or self.rect.y > levelwidth:
+        if self.rect.x < 0 or self.rect.x > levelwidth:
             self.refresh_position_x_undo()
         
         self.refresh_position_y()

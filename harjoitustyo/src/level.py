@@ -30,12 +30,6 @@ class Level:
     def robot_jump(self):
         self.robot.set_y_speed(-4)
 
-    def cancel_robot_x_movement(self):
-        self.robot.set_x_speed(0)
-
-    def cancel_robot_y_movement(self):
-        self.robot.set_y_speed(0)
-
     def refresh(self):
         self.robot.robot_update_pos(self.screen.get_size())
         
