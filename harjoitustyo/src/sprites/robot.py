@@ -10,6 +10,7 @@ class Robot(pygame.sprite.Sprite):
         )
 
         self.rect = self.image.get_rect()
+        print(self.rect)
         self.width = self.rect[2]
         self.height = self.rect[3]
         self.dx = 0
@@ -51,7 +52,7 @@ class Robot(pygame.sprite.Sprite):
         self.refresh_position_x()
         if self.rect.x < 0 or self.rect.x > levelwidth:
             self.refresh_position_x_undo()
-        
+        print(self.rect.x)
         self.refresh_position_y()
         
         
