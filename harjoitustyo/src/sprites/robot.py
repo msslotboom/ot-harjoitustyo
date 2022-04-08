@@ -11,20 +11,22 @@ class Robot(pygame.sprite.Sprite):
 
         self.rect = self.image.get_rect()
         self.width = self.rect[2]
-        self.length = self.rect[3]
-
+        self.height = self.rect[3]
         self.dx = 0
         self.dy = 0
+        
+        self.rect.x = 200
+        self.rect.y = 200
 
-    def refresh(self):
-        self.rect.x += self.dx
-        self.rect.y += self.dy
+    # def refresh(self):
+    #     self.rect.x += self.dx
+    #     self.rect.y += self.dy
 
     def set_x_speed(self, newdx):
         self.dx = newdx
 
     def set_y_speed(self, newdy):
-        self.dx = newdy
+        self.dy = newdy
 
     def refresh_position_x(self):
         self.rect.x += self.dx
@@ -37,6 +39,27 @@ class Robot(pygame.sprite.Sprite):
 
     def refresh_position_y_undo(self):
         self.rect.y += -self.dy
+
+
+    def robot_update_pos(self, screensize):
+        levelheight, levelwidth = screensize[0], screensize[1]
+        self.refresh_position_x()
+        if self.rect.x < 0 or self.rect.y > levelwidth:
+            self.refresh_position_x_undo()
+        
+        self.refresh_position_y()
+        
+        
+        # TODO: Update edges to be objects so collision can be checked instead of position
+        if self.rect.y > levelheight:
+            print("below")
+            print(self.rect.y)
+            self.rect.y = levelheight - 2.5*self.height
+            print(self.rect.y)
+            self.set_y_speed(0)
+        elif self.rect.y < 0:
+            print("above")
+            self.refresh_position_y_undo()
  
     
 

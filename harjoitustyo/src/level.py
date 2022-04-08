@@ -10,6 +10,8 @@ class Level:
         self.all_sprites = pygame.sprite.Group()
         self.all_sprites.add(self.robot)
 
+        self.gravity = 1
+        self.robotweight = 0.1
         self.robotspeed = 5
         
 
@@ -24,20 +26,24 @@ class Level:
     def robot_move_right(self):
         self.robot.set_x_speed((self.robotspeed))
 
-    def cancel_x_movement(self):
+
+    def robot_jump(self):
+        self.robot.set_y_speed(-4)
+
+    def cancel_robot_x_movement(self):
         self.robot.set_x_speed(0)
 
+    def cancel_robot_y_movement(self):
+        self.robot.set_y_speed(0)
 
+    def refresh(self):
+        self.robot.robot_update_pos(self.screen.get_size())
+        
+        # Change y speed to simulate gravity
+        if self.robot.dy != 0:
+            self.robot.set_y_speed(self.robot.dy + self.robotweight * self.gravity)
     
     # Checks wether position is outside of x coordinates, sides of screen need to be made objects once objects are added
-    def robot_update_pos(self):
-        width, height = self.screen.get_size()
-
-        self.robot.refresh_position_x()
-        if self.robot.rect.x < 0 or self.robot.rect.y > width:
-            self.robot.refresh_position_x_undo()
-        
-
-        if self.robot.rect.y < 0 or self.robot.rect.y > height:
-            self.robot.refresh_position_y_undo()
+    
+            
             

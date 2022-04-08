@@ -13,7 +13,7 @@ def main():
 
     running = True
 
-    # Gameloop: to be refractored into other file
+    # TODO: Gameloop to be refractored into other file
     while running:
         screen.fill((255,87,87))
         gamelevel.all_sprites.draw(screen)
@@ -26,11 +26,13 @@ def main():
                     gamelevel.robot_move_left()
                 if event.key == pygame.K_RIGHT:
                     gamelevel.robot_move_right()
+                if event.key == pygame.K_UP:
+                    gamelevel.robot_jump()
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
-                    gamelevel.cancel_x_movement()
+                    gamelevel.cancel_robot_x_movement()
 
-        gamelevel.robot_update_pos()
+        gamelevel.refresh()
         pygame.display.flip()
         clock.tick(60)
 
