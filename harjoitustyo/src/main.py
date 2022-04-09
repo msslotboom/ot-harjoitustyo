@@ -28,9 +28,13 @@ def main():
                     gamelevel.robot_move_right()
                 if event.key == pygame.K_UP:
                     gamelevel.robot_jump()
+
+
             elif event.type == pygame.KEYUP:
-                if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
-                    gamelevel.robot.cancel_robot_x_movement()
+                if event.key == pygame.K_LEFT:
+                    gamelevel.robot_move_right()
+                if event.key == pygame.K_RIGHT:
+                    gamelevel.robot_move_left()
 
         gamelevel.refresh()
         pygame.display.flip()

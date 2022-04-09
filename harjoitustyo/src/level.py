@@ -1,4 +1,5 @@
 import pygame
+from sprites.barrier_horizontal import Barrier_horizontal
 from sprites.robot import Robot
 
 class Level:
@@ -7,8 +8,11 @@ class Level:
         self.screen = screen
         self.screen.fill(((255,87,87)))
         self.robot = Robot()
+        self.width, self.height = screen.get_size()[0], screen.get_size()[1]
+        self.floor = Barrier_horizontal(self.width, 20)
         self.all_sprites = pygame.sprite.Group()
         self.all_sprites.add(self.robot)
+        self.all_sprites.add(self.floor)
 
         self.gravity = 1
         self.robotweight = 0.1
@@ -21,10 +25,10 @@ class Level:
         self.all_sprites.add(self.robot)
 
     def robot_move_left(self):
-        self.robot.set_x_speed(-(self.robotspeed))
+        self.robot.increase_x_speed(-(self.robotspeed))
 
     def robot_move_right(self):
-        self.robot.set_x_speed((self.robotspeed))
+        self.robot.increase_x_speed((self.robotspeed))
 
 
     def robot_jump(self):
