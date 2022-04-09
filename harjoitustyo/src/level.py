@@ -41,7 +41,7 @@ class Level:
 
 
     def robot_jump(self):
-        self.robot.set_y_speed(-4)
+        self.robot.start_jump(4)
 
     def refresh(self):
         collisions = pygame.sprite.groupcollide(self.robotgroup, self.barriergroup, False, False)
@@ -49,8 +49,7 @@ class Level:
         # TODO: change this to be compatible with multiplayer
         for collision in collisions:
             if type(collisions[collision][0]) == Barrier_horizontal:
-                print(True)
-                self.robot.cancel_robot_y_movement()
+                self.robot.stop_jump()
 
                 # Checks wheter robot is above or below barrier and moves robot out of barrier
                 distance_above_barrier = self.robot.rect.bottom - collisions[collision][0].rect.top
@@ -60,11 +59,9 @@ class Level:
                 else: 
                     self.robot.rect.bottom = collisions[collision][0].rect.top
 
+
         self.robot.robot_update_pos(self.screen.get_size())
-        #print(self.floor.rect)
-        # Change y speed to simulate gravity TODO: change if statement, this wont work if speed mid jump is 0
-        # Robot needs a "jumping" boolean that gets set to false when colliding with horizontal object and true when jump is started
-        if self.robot.dy != 0:
+        if self.robot.jumping:
             self.robot.set_y_speed(self.robot.dy + self.robotweight * self.gravity)
     
     # Checks wether position is outside of x coordinates, sides of screen need to be made objects once objects are added
