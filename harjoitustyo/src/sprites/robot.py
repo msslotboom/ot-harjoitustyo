@@ -10,7 +10,7 @@ class Robot(pygame.sprite.Sprite):
         )
 
         self.rect = self.image.get_rect()
-        #print(self.rect)
+        self.rect.bottomleft = (x, y)
         self.width = self.rect[2]
         self.height = self.rect[3]
         self.dx = 0
@@ -18,7 +18,7 @@ class Robot(pygame.sprite.Sprite):
         #print(self.height, self.width)
         #self.rect.x = 200
         #self.rect.y = 200
-
+        print(self.rect)
     # def refresh(self):
     #     self.rect.x += self.dx
     #     self.rect.y += self.dy

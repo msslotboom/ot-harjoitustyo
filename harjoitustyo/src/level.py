@@ -8,18 +8,22 @@ class Level:
         #initialise screen
         self.screen = screen
         self.screen.fill(((255,87,87)))
-        self.robot = Robot()
         self.width, self.height = screen.get_size()[0], screen.get_size()[1]
-        self.floor = Barrier_horizontal(self.width, 20, self.width/2, self.height-10)
+        self.barrierwidth = 20
+        self.robot = Robot(0, self.height - self.barrierwidth/2)
+        self.floor = Barrier_horizontal(self.width, self.barrierwidth, self.width/2, self.height-self.barrierwidth/2)
+        self.roof = Barrier_horizontal(self.width, self.barrierwidth, self.width/2, self.barrierwidth/2)
         self.all_sprites = pygame.sprite.Group()
         self.all_sprites.add(self.robot)
         self.all_sprites.add(self.floor)
+        self.all_sprites.add(self.roof)
 
         self.robotgroup = pygame.sprite.Group()
         self.robotgroup.add(self.robot)
 
         self.barriergroup = pygame.sprite.Group()
         self.barriergroup.add(self.floor)
+        self.barriergroup.add(self.roof)
 
         self.gravity = 1
         self.robotweight = 0.1
@@ -41,6 +45,8 @@ class Level:
 
     def refresh(self):
         collisions = pygame.sprite.groupcollide(self.robotgroup, self.barriergroup, False, False)
+
+        # TODO: change this to be compatible with multiplayer
         for collision in collisions:
             if type(collisions[collision][0]) == Barrier_horizontal:
                 print(True)
