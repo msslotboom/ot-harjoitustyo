@@ -60,14 +60,14 @@ class Robot(pygame.sprite.Sprite):
         
         
         # TODO: Update edges to be objects so collision can be checked instead of position
-        if self.rect.y > levelheight:
-            #print("below")
-            #print(self.rect.y)
-            self.rect.y = levelheight - 2.5*self.height
-            #print(self.rect.y)
-            self.set_y_speed(0)
-        elif self.rect.y < 0:
-            #print("above")print
-            self.refresh_position_y_undo()
+        # if self.rect.y > levelheight:
+        #     #print("below")
+        #     #print(self.rect.y)
+        #     self.rect.y = levelheight - 2.5*self.height
+        #     #print(self.rect.y)
+        #     self.set_y_speed(0)
+        # elif self.rect.y < 0:
+        #     #print("above")print
+        #     self.refresh_position_y_undo()
  
         
