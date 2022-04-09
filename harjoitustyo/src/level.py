@@ -46,10 +46,18 @@ class Level:
                 print(True)
                 self.robot.cancel_robot_y_movement()
 
+                # Checks wheter robot is above or below barrier and moves robot out of barrier
+                distance_above_barrier = self.robot.rect.bottom - collisions[collision][0].rect.top
+                distance_below_barrier = self.robot.rect.top- collisions[collision][0].rect.bottom
+                if distance_above_barrier < distance_below_barrier:
+                    self.robot.rect.top = collisions[collision][0].rect.bottom
+                else: 
+                    self.robot.rect.bottom = collisions[collision][0].rect.top
 
         self.robot.robot_update_pos(self.screen.get_size())
         #print(self.floor.rect)
         # Change y speed to simulate gravity TODO: change if statement, this wont work if speed mid jump is 0
+        # Robot needs a "jumping" boolean that gets set to false when colliding with horizontal object and true when jump is started
         if self.robot.dy != 0:
             self.robot.set_y_speed(self.robot.dy + self.robotweight * self.gravity)
     
