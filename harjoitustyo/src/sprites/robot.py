@@ -1,10 +1,12 @@
-import pygame, os
+import pygame
+import os
 dirname = os.path.dirname(__file__)
+
 
 class Robot(pygame.sprite.Sprite):
     def __init__(self, x=0, y=0):
         super().__init__()
-        
+
         self.image = pygame.image.load(
             os.path.join(dirname, "..", "assets", "robot.png")
         )
@@ -59,4 +61,3 @@ class Robot(pygame.sprite.Sprite):
         if self.rect.x < 0 or self.rect.x > levelwidth:
             self.refresh_position_x_undo()
         self.refresh_position_y()
-        

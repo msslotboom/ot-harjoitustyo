@@ -1,6 +1,7 @@
 import unittest
 from sprites.robot import Robot
 
+
 class TestRobot(unittest.TestCase):
     def setUp(self) -> None:
         self.robot = Robot()

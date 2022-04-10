@@ -1,11 +1,12 @@
 import pygame
 import level
 
+
 def main():
     pygame.init()
     info = pygame.display.Info()
     size = (info.current_w, info.current_h)
-    #temporary size, will need to be updated to be fullscreen
+    # temporary size, will need to be updated to be fullscreen
     tempsize = (600, 480)
     screen = pygame.display.set_mode(tempsize)
     clock = pygame.time.Clock()
@@ -15,7 +16,7 @@ def main():
 
     # TODO: Gameloop to be refractored into other file
     while running:
-        screen.fill((255,87,87))
+        screen.fill((255, 87, 87))
         gamelevel.all_sprites.draw(screen)
 
         for event in pygame.event.get():
@@ -29,7 +30,6 @@ def main():
                 if event.key == pygame.K_UP:
                     gamelevel.robot_jump()
 
-
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT:
                     gamelevel.robot_move_right()
@@ -41,6 +41,7 @@ def main():
         clock.tick(60)
 
     pygame.quit()
+
 
 if __name__ == "__main__":
     main()
