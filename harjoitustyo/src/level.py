@@ -48,9 +48,10 @@ class Level:
         collisions = pygame.sprite.groupcollide(
             self.robotgroup, self.barriergroup, False, False)
 
-        # TODO: change this to be compatible with multiplaye
+        # TODO: change this to be compatible with multiplayer
         for collision in collisions:
             # TODO: bad logic, barrier can have both horizontal and vertical collision
+            # How to fix: check if each pos is in barrier and move out of it, cancel jump if top is in barrier
             if collisions[collision][0].horizontal:
 
                 # Checks wheter robot is above or below barrier and moves robot out of barrier
