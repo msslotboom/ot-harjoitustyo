@@ -36,7 +36,7 @@ def main():
                     gamelevel.robot_move_right()
                 if event.key == pygame.K_RIGHT:
                     gamelevel.robot_move_left()
-
+        #print(gamelevel.robot.rect.x, gamelevel.robot.rect.y)
         gamelevel.refresh()
         pygame.display.flip()
         clock.tick(60)
