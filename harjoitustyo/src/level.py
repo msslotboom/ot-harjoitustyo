@@ -17,9 +17,9 @@ class Level:
         self.roof = Barrier(self.width, self.barrierwidth,
                             self.width/2, self.barrierwidth/2)
         self.left_barrier = Barrier(self.barrierwidth, self.height,
-                            self.barrierwidth/2, self.height/2)
+                                    self.barrierwidth/2, self.height/2)
         self.right_barrier = Barrier(self.barrierwidth, self.height,
-                            self.width - self.barrierwidth/2, self.height/2)
+                                     self.width - self.barrierwidth/2, self.height/2)
         self.all_sprites = pygame.sprite.Group()
         self.all_sprites.add(self.robot)
         self.all_sprites.add(self.floor)
@@ -58,44 +58,35 @@ class Level:
 
         # change this to be compatible with multiplayer
         for collision in collisions:
-            collided_barrier = collisions[collision][0]
-            # if collisions[collision][0].horizontal:
-                # Checks wheter robot is above or below barrier and moves robot out of barrier
-                # distance_above_barrier = abs(
-                #     self.robot.rect.bottom - collisions[collision][0].rect.top)
-                # distance_below_barrier = abs(
-                    # self.robot.rect.top - collisions[collision][0].rect.bottom)
-
-            # robot is smaller than barrier and in between edges of it -> only left/right collision possible
-            if (collided_barrier.rect.bottom > self.robot.rect.bottom and collided_barrier.rect.top < self.robot.rect.top):
-                if self.robot.rect.right in range(collided_barrier.rect.left, collided_barrier.rect.right):
-                    self.robot.rect.right = collided_barrier.rect.left
-                elif self.robot.rect.left in range(collided_barrier.rect.left, collided_barrier.rect.right):
-                    self.robot.rect.left = collided_barrier.rect.right
+            c_b = collisions[collision][0]
+            b_in_robot = c_b.rect.bottom in range(
+                self.robot.rect.top, self.robot.rect.bottom)
+            t_in_robot = c_b.rect.top in range(
+                self.robot.rect.top, self.robot.rect.bottom)
+            if (c_b.rect.bottom > self.robot.rect.bottom and c_b.rect.top < self.robot.rect.top):
+                if self.robot.rect.right in range(c_b.rect.left, c_b.rect.right):
+                    self.robot.rect.right = c_b.rect.left
+                elif self.robot.rect.left in range(c_b.rect.left, c_b.rect.right):
+                    self.robot.rect.left = c_b.rect.right
 
             # check if top is above or bottom is below but not both -> possible top/bottom collision
-            elif (collided_barrier.rect.bottom in range(self.robot.rect.top, self.robot.rect.bottom)) ^ (collided_barrier.rect.top in range(self.robot.rect.top, self.robot.rect.bottom)):
-                if (self.robot.rect.right in range(collided_barrier.rect.left, collided_barrier.rect.right)) ^ (self.robot.rect.left in range(collided_barrier.rect.left, collided_barrier.rect.right)):
-                    if self.robot.rect.right in range(collided_barrier.rect.left, collided_barrier.rect.right):                        
-                        self.robot.rect.right = collided_barrier.rect.left
-                    elif self.robot.rect.left in range(collided_barrier.rect.left, collided_barrier.rect.right):
-                        self.robot.rect.left = collided_barrier.rect.right
+            elif (b_in_robot) ^ (t_in_robot):
+                r_in_b = self.robot.rect.right in range(
+                    c_b.rect.left, c_b.rect.right)
+                l_in_b = self.robot.rect.left in range(
+                    c_b.rect.left, c_b.rect.right)
+                if (r_in_b) ^ (l_in_b):
+                    if self.robot.rect.right in range(c_b.rect.left, c_b.rect.right):
+                        self.robot.rect.right = c_b.rect.left
+                    elif self.robot.rect.left in range(c_b.rect.left, c_b.rect.right):
+                        self.robot.rect.left = c_b.rect.right
 
-                elif collided_barrier.rect.bottom in range(self.robot.rect.top, self.robot.rect.bottom):
-                    self.robot.rect.top = collided_barrier.rect.bottom
+                elif c_b.rect.bottom in range(self.robot.rect.top, self.robot.rect.bottom):
+                    self.robot.rect.top = c_b.rect.bottom
                     self.robot.cancel_robot_y_movement()
-                elif collided_barrier.rect.top in range(self.robot.rect.top, self.robot.rect.bottom):
+                elif c_b.rect.top in range(self.robot.rect.top, self.robot.rect.bottom):
                     self.robot.stop_jump()
-                    self.robot.rect.bottom = collided_barrier.rect.top
-
-            # if True ^ False:
-            #     print("wee")
-                # if distance_above_barrier > distance_below_barrier:
-                #     self.robot.set_y_speed(0)
-                #     self.robot.rect.top = collisions[collision][0].rect.bottom
-                # else:
-                #     self.robot.stop_jump()
-                #     self.robot.rect.bottom = collisions[collision][0].rect.top
+                    self.robot.rect.bottom = c_b.rect.top
 
         self.robot.robot_update_pos()
         if self.robot.jumping:

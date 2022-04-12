@@ -4,8 +4,8 @@ import level
 
 def main():
     pygame.init()
-    info = pygame.display.Info()
-    size = (info.current_w, info.current_h)
+    #info = pygame.display.Info()
+    #size = (info.current_w, info.current_h)
     # temporary size, will need to be updated to be fullscreen
     tempsize = (600, 480)
     screen = pygame.display.set_mode(tempsize)
@@ -14,7 +14,7 @@ def main():
 
     running = True
 
-    # TODO: Gameloop to be refractored into other file
+    # Gameloop to be refractored into other file
     while running:
         screen.fill((255, 87, 87))
         gamelevel.all_sprites.draw(screen)
