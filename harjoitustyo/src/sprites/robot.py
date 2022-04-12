@@ -1,10 +1,10 @@
-import pygame
 import os
+import pygame
 dirname = os.path.dirname(__file__)
 
 
 class Robot(pygame.sprite.Sprite):
-    def __init__(self, x=0, y=0):
+    def __init__(self, pos_x=0, pos_y=0):
         super().__init__()
 
         self.image = pygame.image.load(
@@ -12,7 +12,7 @@ class Robot(pygame.sprite.Sprite):
         )
 
         self.rect = self.image.get_rect()
-        self.rect.bottomleft = (x, y)
+        self.rect.bottomleft = (pos_x, pos_y)
         self.width = self.rect[2]
         self.height = self.rect[3]
         self.dx = 0
@@ -54,10 +54,6 @@ class Robot(pygame.sprite.Sprite):
     def cancel_robot_y_movement(self):
         self.set_y_speed(0)
 
-    def robot_update_pos(self, screensize):
-        levelheight, levelwidth = screensize[0], screensize[1]
-        # TODO: To be changed when vertical barriers are added, + this should be checked in level not in robot
+    def robot_update_pos(self):
         self.refresh_position_x()
-        if self.rect.x < 0 or self.rect.x > levelwidth:
-            self.refresh_position_x_undo()
         self.refresh_position_y()
