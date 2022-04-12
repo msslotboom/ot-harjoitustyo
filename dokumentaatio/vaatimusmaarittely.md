@@ -4,7 +4,10 @@ Sovellus tulee olemaan peli, jossa tarkoitus on päästä tason loppuun esteiden
 ### Käyttäjät
 Pelissä voi valita käyttäjänimen, jota käytetään tallentamaan highscoren. Käyttäjillä ei tule olemaan salasanaa.
 ### Perusversion toiminnalisuudet
-- Pelaajan hahmo voi hyppiä
+##### Tehty
+- Pelaajan hahmo voi hyppiä 
+- Pelissä on esteitä
+##### Todo
 - Pelissä on vihollisia
 - Pelaaja voittaa jos pääsee vihollisten ja esteiden ohi
 - Peli tallentaa highscoren tietokantaan jokaista pelaajanimeä varten ja näyttää korkeimmat tulokset kun on voittaa pelin
