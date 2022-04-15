@@ -57,22 +57,22 @@ class Level:
     def robot_jump(self):
         self.robot.start_jump(7)
 
-    def refresh(self):
-        collisions = pygame.sprite.groupcollide(
-            self.robotgroup, self.barriergroup, False, False)
+    def robot_left_right_collision(self, c_b):
+        if self.robot.rect.right in range(c_b.rect.left, c_b.rect.right):
+            self.robot.rect.right = c_b.rect.left
+        elif self.robot.rect.left in range(c_b.rect.left, c_b.rect.right):
+            self.robot.rect.left = c_b.rect.right
 
+    def robot_barrier_collision(self, collisions):
         # change this to be compatible with multiplayer
         for collision in collisions:
-            c_b = collisions[collision][0]
+            c_b = collisions[collision][0] #collsion_barrier
             b_in_robot = c_b.rect.bottom in range(
                 self.robot.rect.top, self.robot.rect.bottom)
             t_in_robot = c_b.rect.top in range(
                 self.robot.rect.top, self.robot.rect.bottom)
             if (c_b.rect.bottom > self.robot.rect.bottom and c_b.rect.top < self.robot.rect.top):
-                if self.robot.rect.right in range(c_b.rect.left, c_b.rect.right):
-                    self.robot.rect.right = c_b.rect.left
-                elif self.robot.rect.left in range(c_b.rect.left, c_b.rect.right):
-                    self.robot.rect.left = c_b.rect.right
+                self.robot_left_right_collision(c_b)
 
             # check if top is above or bottom is below but not both -> possible top/bottom collision
             elif (b_in_robot) ^ (t_in_robot):
@@ -81,10 +81,7 @@ class Level:
                 l_in_b = self.robot.rect.left in range(
                     c_b.rect.left, c_b.rect.right)
                 if (r_in_b) ^ (l_in_b):
-                    if self.robot.rect.right in range(c_b.rect.left, c_b.rect.right):
-                        self.robot.rect.right = c_b.rect.left
-                    elif self.robot.rect.left in range(c_b.rect.left, c_b.rect.right):
-                        self.robot.rect.left = c_b.rect.right
+                    self.robot_left_right_collision(c_b)
 
                 elif c_b.rect.bottom in range(self.robot.rect.top, self.robot.rect.bottom):
                     self.robot.rect.top = c_b.rect.bottom
@@ -92,6 +89,12 @@ class Level:
                 elif c_b.rect.top in range(self.robot.rect.top, self.robot.rect.bottom):
                     self.robot.stop_jump()
                     self.robot.rect.bottom = c_b.rect.top
+
+    def refresh(self):
+        collisions = pygame.sprite.groupcollide(
+            self.robotgroup, self.barriergroup, False, False)
+
+        self.robot_barrier_collision(collisions)
 
         self.robot.robot_update_pos()
         if self.robot.jumping:
