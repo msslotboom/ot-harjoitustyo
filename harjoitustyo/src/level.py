@@ -1,6 +1,7 @@
 import pygame
 from sprites.barrier import Barrier
 from sprites.robot import Robot
+from sprites.goal import Goal
 
 
 class Level:
@@ -20,12 +21,16 @@ class Level:
                                     self.barrierwidth/2, self.height/2)
         self.right_barrier = Barrier(self.barrierwidth, self.height,
                                      self.width - self.barrierwidth/2, self.height/2)
+
+        self.goal = Goal(self.width-70, self.height-25)
+
         self.all_sprites = pygame.sprite.Group()
         self.all_sprites.add(self.robot)
         self.all_sprites.add(self.floor)
         self.all_sprites.add(self.roof)
         self.all_sprites.add(self.left_barrier)
         self.all_sprites.add(self.right_barrier)
+        self.all_sprites.add(self.goal)
 
         self.robotgroup = pygame.sprite.Group()
         self.robotgroup.add(self.robot)
@@ -37,7 +42,7 @@ class Level:
         self.barriergroup.add(self.right_barrier)
 
         self.gravity = 1
-        self.robotweight = 0.1
+        self.robotweight = 0.3
         self.robotspeed = 5
 
     def _initialise_sprites(self):
@@ -50,7 +55,7 @@ class Level:
         self.robot.increase_x_speed((self.robotspeed))
 
     def robot_jump(self):
-        self.robot.start_jump(4)
+        self.robot.start_jump(7)
 
     def refresh(self):
         collisions = pygame.sprite.groupcollide(
