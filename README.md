@@ -8,7 +8,29 @@ Pelissä voi liikuttaa hahmoa. Pelin tarkoitus on päästä maaliin vihollisten 
 [Changelog](https://github.com/msslotboom/ot-harjoitustyo/blob/master/harjoitustyo/changelog.md)
 
 [Tuntikirjanpito](https://github.com/msslotboom/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
-## Tehtävät
-## Viikko 1
-[komentorivi.txt](https://github.com/msslotboom/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)  
-[gitlog.txt](https://github.com/msslotboom/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
+
+[Arkkitehtuuri](https://github.com/msslotboom/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
+
+## Ohje
+
+Asenna pelin riippuvuudet komennolla
+```bash
+poetry install
+```
+Pelaa peliä komennolla:
+```bash
+poetry run invoke start
+```
+Testit tekee komennolla:
+```bash
+poetry run invoke test
+```
+Coverage reportin tekee komennolla:
+```bash
+poetry run invoke coveragereport
+```
+Html tiedosto syntyy kansioon /htmlcov
+Pylintin antamat pisteet näkee komennolla:
+```bash
+poetry run invoke lint
+```
