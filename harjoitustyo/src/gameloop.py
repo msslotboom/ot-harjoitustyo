@@ -25,9 +25,9 @@ class Gameloop():
 
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT:
-                    self.gamelevel.robot.set_x_speed(0)
+                    self.gamelevel.robot_stop_left()
                 if event.key == pygame.K_RIGHT:
-                    self.gamelevel.robot.set_x_speed(0)
+                    self.gamelevel.robot_stop_right()
             return True
 
     def render(self):

@@ -44,15 +44,22 @@ class Level:
         self.gravity = 1
         self.robotweight = 0.3
         self.robotspeed = 5
+        self.robot.set_x_speed(-(self.robotspeed))
 
     def _initialise_sprites(self):
         self.screen.fill((255, 87, 87))
 
     def robot_move_left(self):
-        self.robot.increase_x_speed(-(self.robotspeed))
+        self.robot.left = True
+
+    def robot_stop_left(self):
+        self.robot.left = False
 
     def robot_move_right(self):
-        self.robot.increase_x_speed((self.robotspeed))
+        self.robot.right = True
+
+    def robot_stop_right(self):
+        self.robot.right = False
 
     def robot_jump(self):
         self.robot.start_jump(7)
