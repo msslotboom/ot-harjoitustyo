@@ -66,7 +66,7 @@ class Level:
     def robot_barrier_collision(self, collisions):
         # change this to be compatible with multiplayer
         for collision in collisions:
-            c_b = collisions[collision][0] #collsion_barrier
+            c_b = collisions[collision][0]  # collsion_barrier
             b_in_robot = c_b.rect.bottom in range(
                 self.robot.rect.top, self.robot.rect.bottom)
             t_in_robot = c_b.rect.top in range(

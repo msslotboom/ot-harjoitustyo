@@ -8,6 +8,7 @@ def main():
     size = (600, 480)
     loop = gameloop.Gameloop(bg_color, size)
     loop.start()
-    
+
+
 if __name__ == "__main__":
     main()

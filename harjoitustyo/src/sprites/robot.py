@@ -15,18 +15,18 @@ class Robot(pygame.sprite.Sprite):
         self.rect.bottomleft = (pos_x, pos_y)
         self.width = self.rect[2]
         self.height = self.rect[3]
-        self.dx = 0
-        self.dy = 0
+        self.d_x = 0
+        self.d_y = 0
         self.jumping = False
 
     def set_x_speed(self, newdx):
-        self.dx = newdx
+        self.d_x = newdx
 
     def set_y_speed(self, newdy):
-        self.dy = newdy
+        self.d_y = newdy
 
     def increase_x_speed(self, acc):
-        self.dx += acc
+        self.d_x += acc
 
     def start_jump(self, jumpspeed):
         self.jumping = True
@@ -37,16 +37,16 @@ class Robot(pygame.sprite.Sprite):
         self.set_y_speed(0)
 
     def refresh_position_x(self):
-        self.rect.x += self.dx
+        self.rect.x += self.d_x
 
     def refresh_position_y(self):
-        self.rect.y += self.dy
+        self.rect.y += self.d_y
 
     def refresh_position_x_undo(self):
-        self.rect.x += -self.dx
+        self.rect.x += -self.d_x
 
     def refresh_position_y_undo(self):
-        self.rect.y += -self.dy
+        self.rect.y += -self.d_y
 
     def cancel_robot_x_movement(self):
         self.set_x_speed(0)

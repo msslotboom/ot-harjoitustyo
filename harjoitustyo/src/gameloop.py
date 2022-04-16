@@ -1,5 +1,6 @@
-from cgitb import handler
-import pygame, level
+import pygame
+import level
+
 
 class Gameloop():
     def __init__(self, bg_color, size) -> None:
@@ -16,17 +17,18 @@ class Gameloop():
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                   self.gamelevel.robot_move_left()
+                    self.gamelevel.robot_move_left()
                 if event.key == pygame.K_RIGHT:
-                   self.gamelevel.robot_move_right()
+                    self.gamelevel.robot_move_right()
                 if event.key == pygame.K_UP:
-                   self.gamelevel.robot_jump()
+                    self.gamelevel.robot_jump()
 
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT:
-                   self.gamelevel.robot_move_right()
+                    self.gamelevel.robot_move_right()
                 if event.key == pygame.K_RIGHT:
-                   self.gamelevel.robot_move_left()
+                    self.gamelevel.robot_move_left()
+            return True
 
     def render(self):
         self.screen.fill(self.bg_color)
@@ -37,6 +39,6 @@ class Gameloop():
 
     def start(self):
         while True:
-            if self.handle_events() == False:
+            if self.handle_events() is False:
                 break
             self.render()
