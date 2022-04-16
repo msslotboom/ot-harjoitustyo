@@ -41,9 +41,9 @@ class Robot(pygame.sprite.Sprite):
     def refresh_position_x(self):
         if self.left and self.right:
             return
-        elif self.right:
+        if self.right:
             self.rect.x -= self.d_x
-        elif self.left:
+        if self.left:
             self.rect.x += self.d_x
 
     def refresh_position_y(self):
@@ -52,9 +52,9 @@ class Robot(pygame.sprite.Sprite):
     def refresh_position_x_undo(self):
         if self.left and self.right:
             return
-        elif self.right:
+        if self.right:
             self.rect.x += self.d_x
-        elif self.left:
+        if self.left:
             self.rect.x -= self.d_x
 
     def refresh_position_y_undo(self):

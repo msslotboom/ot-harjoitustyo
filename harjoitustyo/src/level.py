@@ -5,6 +5,7 @@ from sprites.robot import Robot
 from sprites.goal import Goal
 dirname = os.path.dirname(__file__)
 
+
 class Level:
     def __init__(self, screen, bg_color) -> None:
 
@@ -14,33 +15,17 @@ class Level:
         self.width, self.height = screen.get_size()[0], screen.get_size()[1]
         self.barrierwidth = 20
         self.robot = Robot(0, self.height - self.barrierwidth/2)
-        # self.floor = Barrier(self.width, self.barrierwidth,
-        #                      self.width/2, self.height-self.barrierwidth/2)
-        # self.roof = Barrier(self.width, self.barrierwidth,
-        #                     self.width/2, self.barrierwidth/2)
-        # self.left_barrier = Barrier(self.barrierwidth, self.height,
-        #                             self.barrierwidth/2, self.height/2)
-        # self.right_barrier = Barrier(self.barrierwidth, self.height,
-        #                              self.width - self.barrierwidth/2, self.height/2)
 
         self.goal = Goal(self.width-70, self.height-25)
 
         self.all_sprites = pygame.sprite.Group()
         self.all_sprites.add(self.robot)
-        # #self.all_sprites.add(self.floor)
-        # self.all_sprites.add(self.roof)
-        # self.all_sprites.add(self.left_barrier)
-        # self.all_sprites.add(self.right_barrier)
         self.all_sprites.add(self.goal)
 
         self.robotgroup = pygame.sprite.Group()
         self.robotgroup.add(self.robot)
 
         self.barriergroup = pygame.sprite.Group()
-    #    # self.barriergroup.add(self.floor)
-    #     self.barriergroup.add(self.roof)
-    #     self.barriergroup.add(self.left_barrier)
-    #     self.barriergroup.add(self.right_barrier)
 
         self.read_level(dirname+"/levels/level1.csv")
         self.gravity = 1
@@ -51,17 +36,21 @@ class Level:
     def read_level(self, filename):
         with open(filename) as file:
             for row in file:
-                row.replace("\n","")
+                row.replace("\n", "")
                 parts = row.split(",")
                 if parts[0] == "Barrier":
                     for index, part in enumerate(parts):
                         if "levelheight" in part:
-                            parts[index] = parts[index].replace("levelheight", str(self.height))
+                            parts[index] = parts[index].replace(
+                                "levelheight", str(self.height))
                         if "levelwidth" in part:
-                            parts[index] = parts[index].replace("levelwidth", str(self.width))
+                            parts[index] = parts[index].replace(
+                                "levelwidth", str(self.width))
                         if "barrierwidth" in part:
-                            parts[index] = parts[index].replace("barrierwidth", str(self.barrierwidth))
-                    newbarrier = Barrier(eval(parts[1]), eval(parts[2]),eval(parts[3]),eval(parts[4]))
+                            parts[index] = parts[index].replace(
+                                "barrierwidth", str(self.barrierwidth))
+                    newbarrier = Barrier(eval(parts[1]), eval(
+                        parts[2]), eval(parts[3]), eval(parts[4]))
                     self.all_sprites.add(newbarrier)
                     self.barriergroup.add(newbarrier)
 
@@ -117,11 +106,13 @@ class Level:
                     self.robot.rect.bottom = c_b.rect.top
 
     def robot_goal_collision(self):
-        if self.robot.rect.bottomleft[0] in range(self.goal.rect.bottomleft[0]-20, self.goal.rect.bottomleft[0] + self.goal.width+20):
-            if self.robot.rect.bottomleft[1] in range(self.goal.rect.bottomleft[1] - self.goal.height, self.goal.rect.bottomleft[1]+10):
+        goal_b_left = self.goal.rect.bottomleft
+        goal_x_range = range(goal_b_left[0]-20, goal_b_left[0] + self.goal.width+20)
+        goal_y_range = range(goal_b_left[1] - self.goal.height, goal_b_left[1]+10)
+        if self.robot.rect.bottomleft[0] in (goal_x_range):
+            if self.robot.rect.bottomleft[1] in (goal_y_range):
                 return True
         return False
-
 
     def refresh(self):
 

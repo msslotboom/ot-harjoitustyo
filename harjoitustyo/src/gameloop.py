@@ -7,7 +7,7 @@ class Gameloop():
         self.clock = pygame.time.Clock()
         self.tempsize = (size)
         self.screen = pygame.display.set_mode(self.tempsize, pygame.SCALED)
-        #pygame.SCALED
+        # pygame.SCALED
         pygame.display.toggle_fullscreen()
         self.bg_color = bg_color
         self.gamelevel = level.Level(self.screen, self.bg_color)
@@ -43,7 +43,7 @@ class Gameloop():
 
     def start(self):
         while True:
-            if self.handle_events() == False:
+            if self.handle_events() is False:
                 break
             if self.render():
                 return True

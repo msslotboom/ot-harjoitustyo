@@ -12,8 +12,10 @@ def main():
     else:
         return
 
+
 def win():
     print("You won!")
+
 
 if __name__ == "__main__":
     main()
