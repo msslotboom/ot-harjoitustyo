@@ -30,6 +30,7 @@ Coverage reportin tekee komennolla:
 poetry run invoke coveragereport
 ```
 Html tiedosto syntyy kansioon /htmlcov
+
 Pylintin antamat pisteet näkee komennolla:
 ```bash
 poetry run invoke lint
