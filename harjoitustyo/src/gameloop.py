@@ -25,20 +25,23 @@ class Gameloop():
 
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT:
-                    self.gamelevel.robot_move_right()
+                    self.gamelevel.robot.set_x_speed(0)
                 if event.key == pygame.K_RIGHT:
-                    self.gamelevel.robot_move_left()
+                    self.gamelevel.robot.set_x_speed(0)
             return True
 
     def render(self):
         self.screen.fill(self.bg_color)
         self.gamelevel.all_sprites.draw(self.screen)
-        self.gamelevel.refresh()
+        if self.gamelevel.refresh():
+            return True
         pygame.display.flip()
         self.clock.tick(60)
+        return False
 
     def start(self):
         while True:
-            if self.handle_events() is False:
+            if self.handle_events() == False:
                 break
-            self.render()
+            if self.render():
+                return True
