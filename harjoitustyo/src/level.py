@@ -90,13 +90,23 @@ class Level:
                     self.robot.stop_jump()
                     self.robot.rect.bottom = c_b.rect.top
 
+    def robot_goal_collision(self):
+        if self.robot.rect.bottomleft[0] in range(self.goal.rect.bottomleft[0]-20, self.goal.rect.bottomleft[0] + self.goal.width+20):
+            if self.robot.rect.bottomleft[1] in range(self.goal.rect.bottomleft[1] - self.goal.height, self.goal.rect.bottomleft[1]+10):
+                return True
+        return False
+
+
     def refresh(self):
         collisions = pygame.sprite.groupcollide(
             self.robotgroup, self.barriergroup, False, False)
 
         self.robot_barrier_collision(collisions)
+        if self.robot_goal_collision():
+            return True
 
         self.robot.robot_update_pos()
         if self.robot.jumping:
             self.robot.set_y_speed(
-                self.robot.dy + self.robotweight * self.gravity)
+                self.robot.d_y + self.robotweight * self.gravity)
+        return False

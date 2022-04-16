@@ -17,6 +17,7 @@ class Robot(pygame.sprite.Sprite):
         self.height = self.rect[3]
         self.d_x = 0
         self.d_y = 0
+        self.dir = ""
         self.jumping = False
 
     def set_x_speed(self, newdx):
