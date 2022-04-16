@@ -105,6 +105,7 @@ class Level:
 
 
     def refresh(self):
+        print(self.robot.left, self.robot.right)
         collisions = pygame.sprite.groupcollide(
             self.robotgroup, self.barriergroup, False, False)
 

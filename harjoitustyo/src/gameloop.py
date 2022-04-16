@@ -23,12 +23,12 @@ class Gameloop():
                 if event.key == pygame.K_UP:
                     self.gamelevel.robot_jump()
 
-            elif event.type == pygame.KEYUP:
+            if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT:
                     self.gamelevel.robot_stop_left()
                 if event.key == pygame.K_RIGHT:
                     self.gamelevel.robot_stop_right()
-            return True
+        return True
 
     def render(self):
         self.screen.fill(self.bg_color)
