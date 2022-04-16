@@ -5,7 +5,7 @@ import gameloop
 def main():
     pygame.init()
     bg_color = (255, 87, 87)
-    size = (600, 480)
+    size = (1920, 1080)
     loop = gameloop.Gameloop(bg_color, size)
     if loop.start():
         win()

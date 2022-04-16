@@ -6,9 +6,11 @@ class Gameloop():
     def __init__(self, bg_color, size) -> None:
         self.clock = pygame.time.Clock()
         self.tempsize = (size)
-        self.screen = pygame.display.set_mode(self.tempsize)
-        self.gamelevel = level.Level(self.screen)
+        self.screen = pygame.display.set_mode(self.tempsize, pygame.SCALED)
+        #pygame.SCALED
+        pygame.display.toggle_fullscreen()
         self.bg_color = bg_color
+        self.gamelevel = level.Level(self.screen, self.bg_color)
 
     def handle_events(self):
         for event in pygame.event.get():
