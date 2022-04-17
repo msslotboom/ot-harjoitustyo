@@ -2,3 +2,4 @@ Barrier, levelwidth, barrierwidth, levelwidth/2, levelheight-barrierwidth/2
 Barrier, levelwidth, barrierwidth, levelwidth/2, barrierwidth/2
 Barrier, barrierwidth, levelheight, barrierwidth/2, levelheight/2
 Barrier, barrierwidth, levelheight, levelwidth - barrierwidth/2, levelheight/2
+Barrier, barrierwidth, levelheight/5, 1000, 1000
