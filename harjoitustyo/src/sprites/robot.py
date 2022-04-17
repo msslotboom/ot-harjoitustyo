@@ -31,11 +31,12 @@ class Robot(pygame.sprite.Sprite):
         self.d_x += acc
 
     def start_jump(self, jumpspeed):
-        self.jumping = True
-        self.set_y_speed(-jumpspeed)
+        if self.jumping < 2:
+            self.jumping += 1
+            self.set_y_speed(-jumpspeed)
 
     def stop_jump(self):
-        self.jumping = False
+        self.jumping = 0
         self.set_y_speed(0)
 
     def refresh_position_x(self):
