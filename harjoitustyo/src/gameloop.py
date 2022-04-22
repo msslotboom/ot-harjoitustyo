@@ -11,6 +11,7 @@ class Gameloop():
         pygame.display.toggle_fullscreen()
         self.bg_color = bg_color
         self.gamelevel = level.Level(self.screen, self.bg_color)
+        self.physicsmodule = self.gamelevel.physicsmodule
 
     def handle_events(self):
         for event in pygame.event.get():
@@ -19,17 +20,17 @@ class Gameloop():
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    self.gamelevel.robot_move_left()
+                    self.physicsmodule.robot_move_left()
                 if event.key == pygame.K_RIGHT:
-                    self.gamelevel.robot_move_right()
+                    self.physicsmodule.robot_move_right()
                 if event.key == pygame.K_UP:
-                    self.gamelevel.robot_jump()
+                    self.physicsmodule.robot_jump()
 
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT:
-                    self.gamelevel.robot_stop_left()
+                    self.physicsmodule.robot_stop_left()
                 if event.key == pygame.K_RIGHT:
-                    self.gamelevel.robot_stop_right()
+                    self.physicsmodule.robot_stop_right()
         return True
 
     def render(self):
