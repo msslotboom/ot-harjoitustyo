@@ -1,4 +1,6 @@
 from curses.panel import bottom_panel
+from operator import le
+from turtle import left
 import pygame
 
 
@@ -26,6 +28,15 @@ class Physics:
         elif self.robot.rect.left in range(c_b.rect.left, c_b.rect.right):
             self.robot.rect.left = c_b.rect.right
 
+    def robot_top_bottom_collision(self,c_b):
+        if c_b.rect.bottom in range(self.robot.rect.top, self.robot.rect.bottom):
+            self.robot.rect.top = c_b.rect.bottom
+            self.robot.cancel_robot_y_movement()
+        elif c_b.rect.top in range(self.robot.rect.top, self.robot.rect.bottom):
+            self.barrier_under_robot = c_b
+            self.robot.stop_jump()
+            self.robot.rect.bottom = c_b.rect.top
+
     def robot_barrier_collision(self, collisions):
         # change this to be compatible with multiplayer
         for index, collision in enumerate(collisions):
@@ -44,16 +55,22 @@ class Physics:
                 l_in_b = self.robot.rect.left in range(
                     c_b.rect.left, c_b.rect.right)
                 if (r_in_b) ^ (l_in_b):
-                    # Check possible top bottom collision here, 
-                    self.robot_left_right_collision(c_b)
+                #     # Check possible top bottom collision here, compare which is larger
+                #     top_collision = abs(self.robot.rect.top - c_b.rect.bottom)
+                #     bottom_collision = self.robot.rect.bottom - self.robot.rect.top
+                #     t_b_collision = max(top_collision, bottom_collision)
 
-                elif c_b.rect.bottom in range(self.robot.rect.top, self.robot.rect.bottom):
-                    self.robot.rect.top = c_b.rect.bottom
-                    self.robot.cancel_robot_y_movement()
-                elif c_b.rect.top in range(self.robot.rect.top, self.robot.rect.bottom):
-                    self.barrier_under_robot = c_b
-                    self.robot.stop_jump()
-                    self.robot.rect.bottom = c_b.rect.top
+                #     left_collision = self.robot.rect.left - c_b.rect.right
+                #     right_collision = self.robot.rect.right - c_b.rect.left
+                #     l_r_collision = max(left_collision, right_collision)
+
+                #     if t_b_collision > l_r_collision:
+                #         self.robot_left_right_collision(c_b)
+                #     else:
+                #         self.robot_top_bottom_collision(c_b)
+                    self.robot_left_right_collision(c_b)
+                else:
+                    self.robot_top_bottom_collision(c_b)
 
     def robot_goal_collision(self):
         goal_b_left = self.goal.rect.bottomleft
@@ -70,7 +87,8 @@ class Physics:
         c_b = self.barrier_under_robot
         if c_b == "":
             return True
-        if c_b.rect.top in range(self.robot.rect.bottom-2, self.robot.rect.bottom+2):
+        # if c_b.rect.top in range(self.robot.rect.bottom-1, self.robot.rect.bottom+1):
+        if c_b.rect.top == self.robot.rect.bottom:
             if c_b.rect.left in range(self.robot.rect.left, self.robot.rect.right):
                 return False
             if c_b.rect.right in range(self.robot.rect.left, self.robot.rect.right):
@@ -88,11 +106,9 @@ class Physics:
         
         self.robot.robot_update_pos()
         should_robot_fall = self.should_robot_fall()
-        if self.previous_should_fall != should_robot_fall and should_robot_fall is True:
+        if self.previous_should_fall != should_robot_fall and should_robot_fall is True and self.robot.jumping == 0:
             self.robot.start_jump(1)
         self.previous_should_fall = should_robot_fall
-
-        print(should_robot_fall, self.previous_should_fall)
 
         if self.robot.jumping:
             self.robot.set_y_speed(
