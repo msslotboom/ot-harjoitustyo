@@ -6,6 +6,7 @@ import pygame
 class TestLevel(unittest.TestCase):
     def setUp(self) -> None:
         tempsize = (600, 480)
+        color = (255, 87, 87)
         screen = pygame.display.set_mode(tempsize)
         self.clock = pygame.time.Clock()
         self.level = Level(screen)

@@ -3,6 +3,7 @@ import pygame
 from sprites.barrier import Barrier
 from sprites.robot import Robot
 from sprites.goal import Goal
+from physics import Physics
 dirname = os.path.dirname(__file__)
 
 
@@ -15,7 +16,6 @@ class Level:
         self.width, self.height = screen.get_size()[0], screen.get_size()[1]
         self.barrierwidth = 20
         self.robot = Robot(0, self.height - self.barrierwidth/2)
-
         self.goal = Goal(self.width-70, self.height-25)
 
         self.all_sprites = pygame.sprite.Group()
@@ -25,13 +25,12 @@ class Level:
         self.robotgroup = pygame.sprite.Group()
         self.robotgroup.add(self.robot)
 
-        self.barriergroup = pygame.sprite.Group()
+        self.all_barriers = pygame.sprite.Group()
 
         self.read_level(dirname+"/levels/level1.csv")
-        self.gravity = 1
-        self.robotweight = 0.3
-        self.robotspeed = 5
-        self.robot.set_x_speed(-(self.robotspeed))
+
+        self.physicsmodule = Physics(
+            self.robot, self.goal, self.all_sprites, self.all_barriers)
 
     def read_level(self, filename):
         with open(filename) as file:
@@ -52,7 +51,7 @@ class Level:
                     newbarrier = Barrier(eval(parts[1]), eval(
                         parts[2]), eval(parts[3]), eval(parts[4]))
                     self.all_sprites.add(newbarrier)
-                    self.barriergroup.add(newbarrier)
+                    self.all_barriers.add(newbarrier)
 
     def _initialise_sprites(self):
         self.screen.fill((255, 87, 87))
@@ -72,58 +71,6 @@ class Level:
     def robot_jump(self):
         self.robot.start_jump(7)
 
-    def robot_left_right_collision(self, c_b):
-        if self.robot.rect.right in range(c_b.rect.left, c_b.rect.right):
-            self.robot.rect.right = c_b.rect.left
-        elif self.robot.rect.left in range(c_b.rect.left, c_b.rect.right):
-            self.robot.rect.left = c_b.rect.right
-
-    def robot_barrier_collision(self, collisions):
-        # change this to be compatible with multiplayer
-        for collision in collisions:
-            c_b = collisions[collision][0]  # collsion_barrier
-            b_in_robot = c_b.rect.bottom in range(
-                self.robot.rect.top, self.robot.rect.bottom)
-            t_in_robot = c_b.rect.top in range(
-                self.robot.rect.top, self.robot.rect.bottom)
-            if (c_b.rect.bottom > self.robot.rect.bottom and c_b.rect.top < self.robot.rect.top):
-                self.robot_left_right_collision(c_b)
-
-            # check if top is above or bottom is below but not both -> possible top/bottom collision
-            elif (b_in_robot) ^ (t_in_robot):
-                r_in_b = self.robot.rect.right in range(
-                    c_b.rect.left, c_b.rect.right)
-                l_in_b = self.robot.rect.left in range(
-                    c_b.rect.left, c_b.rect.right)
-                if (r_in_b) ^ (l_in_b):
-                    self.robot_left_right_collision(c_b)
-
-                elif c_b.rect.bottom in range(self.robot.rect.top, self.robot.rect.bottom):
-                    self.robot.rect.top = c_b.rect.bottom
-                    self.robot.cancel_robot_y_movement()
-                elif c_b.rect.top in range(self.robot.rect.top, self.robot.rect.bottom):
-                    self.robot.stop_jump()
-                    self.robot.rect.bottom = c_b.rect.top
-
-    def robot_goal_collision(self):
-        goal_b_left = self.goal.rect.bottomleft
-        goal_x_range = range(goal_b_left[0]-20, goal_b_left[0] + self.goal.width+20)
-        goal_y_range = range(goal_b_left[1] - self.goal.height, goal_b_left[1]+10)
-        if self.robot.rect.bottomleft[0] in (goal_x_range):
-            if self.robot.rect.bottomleft[1] in (goal_y_range):
-                return True
-        return False
-
     def refresh(self):
-
-        collisions = pygame.sprite.groupcollide(
-            self.robotgroup, self.barriergroup, False, False)
-        self.robot_barrier_collision(collisions)
-        if self.robot_goal_collision():
+        if self.physicsmodule.refresh():
             return True
-
-        self.robot.robot_update_pos()
-        if self.robot.jumping:
-            self.robot.set_y_speed(
-                self.robot.d_y + self.robotweight * self.gravity)
-        return False
