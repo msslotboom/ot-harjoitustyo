@@ -8,4 +8,5 @@
 | 12.4 | 3    | Korjattu törmäys robotin ja esteen välillä, testaus, formatointi ja dokumentaatio |
 | 15.4 | 0.5    | Lisätty maali peliin ja refraktorointi |
 | 16.4 | 6    | Lisätty detektointi maalin, bugfixeja, refraktorointi, fullscreen, lisätty tasojen lukeminen csv tiedostoista  |
-Yhteensä:|  19
+| 18.4 | 1    | robotin ja esteiden törmäyksen parantaminen |
+Yhteensä:|  20
