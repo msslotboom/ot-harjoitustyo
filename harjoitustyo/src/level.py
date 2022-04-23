@@ -56,7 +56,7 @@ class Level:
                     for i in range(1, 5):
                         evaluatedlist.append(eval(parts[i]))
                     newbarrier = Barrier(
-                        evaluatedlist[1], evaluatedlist[2], evaluatedlist[3], evaluatedlist[4])
+                        evaluatedlist[0], evaluatedlist[1], evaluatedlist[2], evaluatedlist[3])
                     self.all_sprites.add(newbarrier)
                     self.all_barriers.add(newbarrier)
 
