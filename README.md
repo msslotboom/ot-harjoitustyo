@@ -27,7 +27,7 @@ poetry run invoke test
 ```
 Coverage reportin tekee komennolla:
 ```bash
-poetry run invoke coveragereport
+poetry run invoke coverage-report
 ```
 Html tiedosto syntyy kansioon /htmlcov
 
