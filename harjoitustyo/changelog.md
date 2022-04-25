@@ -11,6 +11,6 @@
 
 ## Viikko 5
 - Lisätty maali joka huomaa milloinka robotti on saapunut sinne
-- Lisätty toiminnallisuus lukea taso csv-tiedostosta
+- Lisätty toiminnallisuus lukea tason esteet csv-tiedostosta
 - Korjattu bugi jonka takia robotti ei tippunut jos liikkui pois tasolta
 - Peli toimii nyt koko näytöllä
