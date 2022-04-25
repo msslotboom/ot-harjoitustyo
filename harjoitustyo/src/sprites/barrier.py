@@ -8,6 +8,5 @@ class Barrier(pygame.sprite.Sprite):
         super().__init__()
         self.image = pygame.Surface([width, height])
         self.image.fill((0, 0, 0))
-        # self.image.set_colorkey((0,0,0))
         self.rect = self.image.get_rect()
         self.rect.center = pos_x, pos_y

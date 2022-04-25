@@ -30,6 +30,18 @@ class Robot(pygame.sprite.Sprite):
     def increase_x_speed(self, acc):
         self.d_x += acc
 
+    def move_left(self):
+        self.left = True
+
+    def stop_left(self):
+        self.left = False
+
+    def move_right(self):
+        self.right = True
+
+    def stop_right(self):
+        self.right = False
+
     def start_jump(self, jumpspeed):
         if self.jumping < 2:
             self.jumping += 1

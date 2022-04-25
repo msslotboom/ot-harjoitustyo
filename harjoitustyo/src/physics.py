@@ -100,16 +100,16 @@ class Physics:
         return False
 
     def robot_move_left(self):
-        self.robot.left = True
+        self.robot.move_left()
 
     def robot_stop_left(self):
-        self.robot.left = False
+        self.robot.stop_left()
 
     def robot_move_right(self):
-        self.robot.right = True
+        self.robot.move_right()
 
     def robot_stop_right(self):
-        self.robot.right = False
+        self.robot.stop_right()
 
     def robot_jump(self):
         self.robot.start_jump(7)
