@@ -11,4 +11,5 @@
 | 18.4 | 1    | robotin ja esteiden törmäyksen parantaminen |
 | 20.4 | 1    | bugin korjausta |
 | 22.4 | 4    | bugin korjausta, formatointi, refraktorointi |
-Yhteensä:|  25
+| 23.4 | 0.5    | Testien ja bugien korjausta |
+Yhteensä:|  25.5
