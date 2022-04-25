@@ -17,7 +17,7 @@ class Level:
         self.width, self.height = screen.get_size()[0], screen.get_size()[1]
         self.barrierwidth = 20
         self.robot = Robot(0, self.height - self.barrierwidth/2)
-        self.goal = Goal(self.width-70, self.height-25)
+        self.goal = Goal(20, 2.75*self.height/5)
 
         self.all_sprites = pygame.sprite.Group()
         self.all_sprites.add(self.robot)

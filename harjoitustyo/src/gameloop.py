@@ -6,6 +6,7 @@ class Gameloop():
     def __init__(self, bg_color, size) -> None:
         self.clock = pygame.time.Clock()
         self.tempsize = (size)
+        # To be moved to level
         self.screen = pygame.display.set_mode(self.tempsize, pygame.SCALED)
         # pygame.SCALED
         pygame.display.toggle_fullscreen()
