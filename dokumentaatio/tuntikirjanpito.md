@@ -14,4 +14,4 @@
 | 23.4 | 0.5    | Testien ja bugien korjausta |
 | 25.4 | 2    | Sekvenssikaavio, bugien korjausta ja refraktorointia |
 | 26.4 | 0.5    | Refraktorointi |
-Yhteensä:|  25.5
+Yhteensä:|  28
