@@ -1,6 +1,5 @@
 import os
 import pygame
-# import ast
 from sprites.barrier import Barrier
 from sprites.robot import Robot
 from sprites.goal import Goal

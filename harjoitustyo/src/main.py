@@ -1,12 +1,15 @@
 import pygame
 import gameloop
+import level
 
 
 def main():
     pygame.init()
     bg_color = (255, 87, 87)
     size = (1920, 1080)
-    loop = gameloop.Gameloop(bg_color, size)
+    screen = pygame.display.set_mode(size, pygame.SCALED)
+    gamelevel = level.Level(screen, bg_color)
+    loop = gameloop.Gameloop(gamelevel, screen, bg_color)
     if loop.start():
         win()
     else:

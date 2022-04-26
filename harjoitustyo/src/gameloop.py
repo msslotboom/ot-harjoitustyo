@@ -1,17 +1,13 @@
 import pygame
-import level
 
 
 class Gameloop():
-    def __init__(self, bg_color, size) -> None:
+    def __init__(self, level, screen, bg_color) -> None:
         self.clock = pygame.time.Clock()
-        self.tempsize = (size)
-        # To be moved to level
-        self.screen = pygame.display.set_mode(self.tempsize, pygame.SCALED)
-        # pygame.SCALED
+        self.screen = screen
         pygame.display.toggle_fullscreen()
         self.bg_color = bg_color
-        self.gamelevel = level.Level(self.screen, self.bg_color)
+        self.gamelevel = level
         self.physicsmodule = self.gamelevel.physicsmodule
 
     def handle_events(self):
