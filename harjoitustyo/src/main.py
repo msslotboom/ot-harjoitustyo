@@ -10,14 +10,15 @@ def main():
     screen = pygame.display.set_mode(size, pygame.SCALED)
     gamelevel = level.Level(screen, bg_color)
     loop = gameloop.Gameloop(gamelevel, screen, bg_color)
-    if loop.start():
-        win()
+    loop_return = loop.start()
+    if loop_return is not False:
+        win(loop_return)
     else:
         return
 
 
-def win():
-    print("You won!")
+def win(points):
+    print(f"You won with {points} points")
 
 
 if __name__ == "__main__":

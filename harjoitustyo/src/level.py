@@ -13,6 +13,9 @@ class Level:
         # initialise screen
         self.screen = screen
         self.screen.fill((bg_color))
+
+        self.font = pygame.font.SysFont("Arial", 24)
+
         self.width, self.height = screen.get_size()[0], screen.get_size()[1]
         self.barrierwidth = 20
         self.robot = Robot(0, self.height - self.barrierwidth/2)
@@ -26,6 +29,8 @@ class Level:
         self.robotgroup.add(self.robot)
 
         self.all_barriers = pygame.sprite.Group()
+
+        self.points = 1000000
 
         # Add this as a parameter in init once level selector is ready
         self.read_level(dirname+"/levels/level1.csv")
@@ -63,6 +68,13 @@ class Level:
         self.screen.fill((255, 87, 87))
 
     def refresh(self):
+        self.points -= 1
+        self.render_points()
         if self.physicsmodule.refresh():
-            return True
+            return self.points
         return False
+
+    def render_points(self):
+        point_text = self.font.render(
+            f"Points: {self.points}", True, (0, 0, 0))
+        self.screen.blit(point_text, (50, 50))

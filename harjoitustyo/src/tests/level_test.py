@@ -9,6 +9,7 @@ class TestLevel(unittest.TestCase):
         color = (255, 87, 87)
         screen = pygame.display.set_mode(tempsize)
         self.clock = pygame.time.Clock()
+        pygame.init()
         self.level = Level(screen, color)
 
     def test_move_left(self):

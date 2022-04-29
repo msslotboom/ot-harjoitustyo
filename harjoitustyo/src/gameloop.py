@@ -33,8 +33,9 @@ class Gameloop():
     def render(self):
         self.screen.fill(self.bg_color)
         self.gamelevel.all_sprites.draw(self.screen)
-        if self.gamelevel.refresh():
-            return True
+        refresh_return = self.gamelevel.refresh()
+        if refresh_return is not False:
+            return refresh_return
         pygame.display.flip()
         self.clock.tick(60)
         return False
@@ -43,5 +44,6 @@ class Gameloop():
         while True:
             if self.handle_events() is False:
                 break
-            if self.render():
-                return True
+            render_return = self.render()
+            if render_return is not False:
+                return render_return
