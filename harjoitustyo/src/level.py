@@ -97,7 +97,7 @@ class Level:
         self.points -= 1
         self.render_points()
         if self.physicsmodule.refresh():
-            return self.points
+            return True
         return False
 
     def render_points(self):

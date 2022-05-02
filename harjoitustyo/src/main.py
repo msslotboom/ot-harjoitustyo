@@ -12,7 +12,8 @@ def main():
     loop = gameloop.Gameloop(gamelevel, screen, bg_color)
     loop_return = loop.start()
     if loop_return is not False:
-        win(loop_return)
+        gamelevel.physicsmodule
+        win(gamelevel.points)
     else:
         return
 
