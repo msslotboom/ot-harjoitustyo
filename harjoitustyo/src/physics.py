@@ -2,16 +2,33 @@ import pygame
 
 
 class Physics:
+    """Luokka joka hoitaa pelin fysiikan; törmäykset ja liikkuminen menee tämän luokan kautta
+
+    Attributes:
+        robot: pelaajan ohjaama robotti
+        robotgroup: robottiryhmä, tarvitaan törmäysfunktioita varten
+        goal: maali jonne pelaajan pitää mennä jotta voittaa pelin
+        all_sprites: kaikki pelin hahmot
+        all_barriers: kaikki pelin esteet
+        robotweight: robotin paino, tämä on olemassa sitä varten jos lisätään eri hahmoja joilla olisi eri paino
+        barrier_under_robot: boolean joka kertoo onko robotin alla este
+        previous_should_fall: boolean joka kertoo missä tilassa should_robot_fall funktio oli viime kerralla
+    """
     def __init__(self, robot, goal, all_sprites, all_barriers) -> None:
+        """Luokan konstruktori
+        Args:
+            robot: pelaajan ohjaama robotti
+            goal: maali jonne pelaajan pitää mennä jotta voittaa pelin
+            all_sprites: kaikki pelin hahmot
+            all_barriers: kaikki pelin esteet
+        """
         self.robot = robot
         self.robotgroup = pygame.sprite.Group()
         self.robotgroup.add(self.robot)
         self.goal = goal
         self.all_sprites = all_sprites
         self.all_barriers = all_barriers
-        # self.gravity = 1
         self.robotweight = 0.3
-        # self.robotspeed = 5
         self.robot.set_x_speed(-(5))
         self.barrier_under_robot = None
         self.previous_should_fall = None
@@ -48,7 +65,6 @@ class Physics:
                 l_in_b = self.robot.rect.left in range(
                     c_b.rect.left, c_b.rect.right)
                 if (r_in_b) ^ (l_in_b):
-        # change this to be compatible with multiplayer
                     self._robot_left_right_collision(c_b)
                 else:
                     self._robot_top_bottom_collision(c_b)
@@ -68,7 +84,6 @@ class Physics:
         c_b = self.barrier_under_robot
         if c_b == "":
             return True
-        # if c_b.rect.top in range(self.robot.rect.bottom-1, self.robot.rect.bottom+1):
         if c_b.rect.top == self.robot.rect.bottom:
             if c_b.rect.left in range(self.robot.rect.left, self.robot.rect.right):
                 return False
