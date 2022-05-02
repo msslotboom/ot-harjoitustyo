@@ -2,7 +2,15 @@ import pygame
 
 
 class Gameloop():
+    """Peli silmukka: päivittää pelin tilaa, sisältää tapahtumankäsitteliän
+    """
     def __init__(self, level, screen, bg_color) -> None:
+        """Luokan konstruktori
+        Args:
+            level: pelin taso
+            screen: peliruutu
+            bg_color: ruudun taustaväri
+        """
         self.clock = pygame.time.Clock()
         self.screen = screen
         pygame.display.toggle_fullscreen()

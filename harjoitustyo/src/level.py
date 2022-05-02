@@ -8,7 +8,29 @@ dirname = os.path.dirname(__file__)
 
 
 class Level:
+    """Luokka joka luo tason ja päivittää attribuuttien lokaatiot.
+
+    Attributes:
+        screen: pygame screen
+        font: fontti jolla pistemäärä ja muu teksti kirjoitetaan
+        width: pygame näyton leveys
+        height: pygame näyton korkeus
+        barrierwidth: esteen leveyden oletusarvo
+        robot: robotti attribuutti jota pelaaja ohjaa
+        goal: maali jonne robotin pitää päästä voittaakseen
+        all_sprites: sprite group joka sisältää pelin kaikki spritetit
+        robotgroup: sprite group joka sisältää pelin robottiatribuutin
+        all_barriers: sprite group joka sisältää kaikki esteet
+        points: pistemäärä
+        physicsmodule: pelin fysiikkamoduuli joka on physics luokka
+    """
     def __init__(self, screen, bg_color) -> None:
+        """Luokan konstruktori, joka luo uuden tason
+
+        Args:
+            screen: pygame näyttö jonne taso rakennetaan
+            bg_color: näytön taustaväri
+        """
 
         # initialise screen
         self.screen = screen
@@ -39,6 +61,11 @@ class Level:
             self.robot, self.goal, self.all_sprites, self.all_barriers)
 
     def read_level(self, filename):
+        """Lataa tason esteet .csv tiedostosta
+
+        Args:
+            filename: tiedoston nimi josta ladataan esteet
+        """
         with open(filename, encoding="utf-8") as file:
             for row in file:
                 parts = row.split(",")
@@ -64,10 +91,9 @@ class Level:
                     self.all_sprites.add(newbarrier)
                     self.all_barriers.add(newbarrier)
 
-    def _initialise_sprites(self):
-        self.screen.fill((255, 87, 87))
-
     def refresh(self):
+        """Funktio joka lataa tason muutokset
+        """
         self.points -= 1
         self.render_points()
         if self.physicsmodule.refresh():
@@ -75,6 +101,8 @@ class Level:
         return False
 
     def render_points(self):
+        """Näyttää pistemäärän ruudussa
+        """
         point_text = self.font.render(
             f"Points: {self.points}", True, (0, 0, 0))
         self.screen.blit(point_text, (50, 50))
