@@ -24,6 +24,7 @@ class Level:
         points: pistemäärä
         physicsmodule: pelin fysiikkamoduuli joka on physics luokka
     """
+
     def __init__(self, screen, bg_color) -> None:
         """Luokan konstruktori, joka luo uuden tason
 
@@ -96,6 +97,7 @@ class Level:
         """
         self.points -= 1
         self._render_points()
+        self._render_exit_text()
         if self.physicsmodule.refresh():
             return True
         return False
@@ -106,3 +108,11 @@ class Level:
         point_text = self.font.render(
             f"Points: {self.points}", True, (0, 0, 0))
         self.screen.blit(point_text, (50, 50))
+
+    def _render_exit_text(self):
+        """Näyttää tekstin joka kertoo miten peli suljetaan
+        """
+        esc_text = self.font.render(
+            "Press esc to exit the game!", True, (0, 0, 0)
+        )
+        self.screen.blit(esc_text, (self.width-350, 50))

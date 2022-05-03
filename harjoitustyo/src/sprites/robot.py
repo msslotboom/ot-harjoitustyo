@@ -16,6 +16,7 @@ class Robot(pygame.sprite.Sprite):
         right: liikkuuko robotti oikealle
         jumping: hyppiikö robotti, 0 = ei hypi, 1 = yksi hyppy tehty, 2 = molemmat hypyt käytetty
     """
+
     def __init__(self, pos_x=0, pos_y=0):
         """Luokan konstruktori
         Args:

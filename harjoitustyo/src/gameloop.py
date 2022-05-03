@@ -4,6 +4,7 @@ import pygame
 class Gameloop():
     """Peli silmukka: päivittää pelin tilaa, sisältää tapahtumankäsitteliän
     """
+
     def __init__(self, level, screen, bg_color) -> None:
         """Luokan konstruktori
         Args:
@@ -19,7 +20,8 @@ class Gameloop():
         self.physicsmodule = self.gamelevel.physicsmodule
 
     def _handle_events(self):
-        """Tapahtumankäsitteliä: lukee eri tapahtumat niinkuin näppäimistön tapahtumat ja hoitaa sen aiheuttanat tapahtumat kuntoon
+        """Tapahtumankäsitteliä: lukee eri tapahtumat niinkuin näppäimistön
+        tapahtumat ja hoitaa sen aiheuttanat tapahtumat kuntoon
         """
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -32,6 +34,8 @@ class Gameloop():
                     self.physicsmodule.robot_move_right()
                 if event.key == pygame.K_UP:
                     self.physicsmodule.robot_jump()
+                if event.key == pygame.K_ESCAPE:
+                    return False
 
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT:

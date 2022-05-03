@@ -10,10 +10,11 @@ class Physics:
         goal: maali jonne pelaajan pitää mennä jotta voittaa pelin
         all_sprites: kaikki pelin hahmot
         all_barriers: kaikki pelin esteet
-        robotweight: robotin paino, tämä on olemassa sitä varten jos lisätään eri hahmoja joilla olisi eri paino
+        robotweight: robotin paino
         barrier_under_robot: boolean joka kertoo onko robotin alla este
-        previous_should_fall: boolean joka kertoo missä tilassa should_robot_fall funktio oli viime kerralla
+        previous_should_fall: boolean, kertoo missä tilassa should_robot_fall oli viime kerralla
     """
+
     def __init__(self, robot, goal, all_sprites, all_barriers) -> None:
         """Luokan konstruktori
         Args:
