@@ -55,12 +55,12 @@ class Level:
         self.points = 1000000
 
         # Add this as a parameter in init once level selector is ready
-        self.read_level(dirname+"/levels/level1.csv")
+        self._read_level(dirname+"/levels/level1.csv")
 
         self.physicsmodule = Physics(
             self.robot, self.goal, self.all_sprites, self.all_barriers)
 
-    def read_level(self, filename):
+    def _read_level(self, filename):
         """Lataa tason esteet .csv tiedostosta
 
         Args:
@@ -92,15 +92,15 @@ class Level:
                     self.all_barriers.add(newbarrier)
 
     def refresh(self):
-        """Funktio joka lataa tason muutokset
+        """Funktio joka lataa tason muutokset. Palauttaa True jos pelaaja voitti tason
         """
         self.points -= 1
-        self.render_points()
+        self._render_points()
         if self.physicsmodule.refresh():
             return True
         return False
 
-    def render_points(self):
+    def _render_points(self):
         """Näyttää pistemäärän ruudussa
         """
         point_text = self.font.render(

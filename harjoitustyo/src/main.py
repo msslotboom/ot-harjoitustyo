@@ -10,9 +10,7 @@ def main():
     screen = pygame.display.set_mode(size, pygame.SCALED)
     gamelevel = level.Level(screen, bg_color)
     loop = gameloop.Gameloop(gamelevel, screen, bg_color)
-    loop_return = loop.start()
-    if loop_return is not False:
-        gamelevel.physicsmodule
+    if loop.start():
         win(gamelevel.points)
     else:
         return

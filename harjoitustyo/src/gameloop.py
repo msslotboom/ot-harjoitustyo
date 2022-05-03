@@ -18,7 +18,7 @@ class Gameloop():
         self.gamelevel = level
         self.physicsmodule = self.gamelevel.physicsmodule
 
-    def handle_events(self):
+    def _handle_events(self):
         """Tapahtumankäsitteliä: lukee eri tapahtumat niinkuin näppäimistön tapahtumat ja hoitaa sen aiheuttanat tapahtumat kuntoon
         """
         for event in pygame.event.get():
@@ -40,24 +40,21 @@ class Gameloop():
                     self.physicsmodule.robot_stop_right()
         return True
 
-    def render(self):
+    def _render(self):
         """Lataa ruudun ja pelin hahmot taso luokasta, liikuttaa kelloa eteenpäin
         """
         self.screen.fill(self.bg_color)
         self.gamelevel.all_sprites.draw(self.screen)
-        refresh_return = self.gamelevel.refresh()
-        if refresh_return is not False:
-            return refresh_return
+        if self.gamelevel.refresh():
+            return True
         pygame.display.flip()
         self.clock.tick(60)
         return False
 
     def start(self):
-        """Aloittaa """
+        """Funktio joka suoritetaan kuin peli aloitetaan, palauttaa True jos pelaaja voittaa"""
         while True:
-            if self.handle_events() is False:
+            if self._handle_events() is False:
                 break
-            self.render()
-            render_return = self.render()
-            if render_return is not False:
-                return render_return
+            if self._render():
+                return True

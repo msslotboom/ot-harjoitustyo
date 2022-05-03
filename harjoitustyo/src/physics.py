@@ -92,7 +92,7 @@ class Physics:
         return True
 
     def refresh(self):
-        """Päivittää kaikkien 
+        """Päivittää kaikkien spirtejen paikat ja törmäykset. Palauttaa True jos robotti on maalissa
         """
         collisions = pygame.sprite.groupcollide(
             self.robotgroup, self.all_barriers, False, False)
