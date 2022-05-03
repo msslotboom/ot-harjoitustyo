@@ -14,4 +14,7 @@
 | 23.4 | 0.5    | Testien ja bugien korjausta |
 | 25.4 | 2    | Sekvenssikaavio, bugien korjausta ja refraktorointia |
 | 26.4 | 0.5    | Refraktorointi |
-Yhteensä:|  28
+| 29.4 | 3   | Lisätty piste-systeemi |
+| 2.5 | 3   | Docstring dokumentaatiota |
+| 3.5 | 6   | Peli sulkeutuu jos painaa esciä, dokumentaatio ja käyttöohje |
+Yhteensä:|  40
