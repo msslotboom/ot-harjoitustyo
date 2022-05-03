@@ -11,6 +11,8 @@ Pelissä voi liikuttaa hahmoa. Pelin tarkoitus on päästä maaliin vihollisten 
 
 [Arkkitehtuuri](https://github.com/msslotboom/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
+[Käyttöohje](https://github.com/msslotboom/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
+
 ## Ohje
 
 Asenna pelin riippuvuudet komennolla
