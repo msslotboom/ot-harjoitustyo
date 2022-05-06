@@ -14,3 +14,8 @@
 - Lisätty toiminnallisuus lukea tason esteet csv-tiedostosta
 - Korjattu bugi jonka takia robotti ei tippunut jos liikkui pois esteen päältä
 - Peli toimii nyt koko näytöllä
+
+## Viikko 6
+- Lisätty pistelaskuri
+- Lisätty toiminto että esc napilla peli sulkeutuu ja lisätty teksti joka selittää tämän
+- Muutettu tasoa helpommaksi
