@@ -13,6 +13,8 @@ def main():
     loop = gameloop.Gameloop(gamelevel, screen, bg_color)
     gamemenu = menu.MainMenu(screen, bg_color)
     name = gamemenu.start()
+    if name == "":
+        name = "Unknown"
     if loop.start():
         win(gamelevel.points, name)
     else:
