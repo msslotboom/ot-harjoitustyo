@@ -1,6 +1,7 @@
 import pygame
 import gameloop
 import level
+import menu
 
 
 def main():
@@ -10,14 +11,16 @@ def main():
     screen = pygame.display.set_mode(size, pygame.SCALED)
     gamelevel = level.Level(screen, bg_color)
     loop = gameloop.Gameloop(gamelevel, screen, bg_color)
+    gamemenu = menu.MainMenu(screen, bg_color)
+    name = gamemenu.start()
     if loop.start():
-        win(gamelevel.points)
+        win(gamelevel.points, name)
     else:
         return
 
 
-def win(points):
-    print(f"You won with {points} points")
+def win(points, name):
+    print(f"You won with {points} points, {name}")
 
 
 if __name__ == "__main__":
