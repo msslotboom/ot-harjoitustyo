@@ -56,41 +56,48 @@ class Level:
         self.points = 1000000
 
         # Add this as a parameter in init once level selector is ready
-        self._read_level(dirname+"/levels/level1.csv")
+        self._open_file(dirname+"/levels/level1.csv")
 
         self.physicsmodule = Physics(
             self.robot, self.goal, self.all_sprites, self.all_barriers)
 
-    def _read_level(self, filename):
+    def _open_file(self, filename):
         """Lataa tason esteet .csv tiedostosta
 
         Args:
             filename: tiedoston nimi josta ladataan esteet
         """
         with open(filename, encoding="utf-8") as file:
-            for row in file:
-                parts = row.split(",")
-                if parts[0] == "Barrier":
-                    for index, part in enumerate(parts):
-                        parts[index] = parts[index].strip()
-                        if "levelheight" in part:
-                            parts[index] = parts[index].replace(
-                                "levelheight", str(self.height))
-                        if "levelwidth" in part:
-                            parts[index] = parts[index].replace(
-                                "levelwidth", str(self.width))
-                        if "barrierwidth" in part:
-                            parts[index] = parts[index].replace(
-                                "barrierwidth", str(self.barrierwidth))
-                        if "\n" in part:
-                            parts[index] = parts[index].replace("\n", "")
-                    evaluatedlist = []
-                    for i in range(1, 5):
-                        evaluatedlist.append(eval(parts[i]))
-                    newbarrier = Barrier(
-                        evaluatedlist[0], evaluatedlist[1], evaluatedlist[2], evaluatedlist[3])
-                    self.all_sprites.add(newbarrier)
-                    self.all_barriers.add(newbarrier)
+            self._read_file(file)
+
+    def _read_file(self, file):
+        for row in file:
+            parts = row.split(",")
+            if parts[0] == "Barrier":
+                self._read_barrier(parts)
+
+    def _read_barrier(self, parts):
+        rowparts = parts.copy()
+        for index, part in enumerate(rowparts):
+            rowparts[index] = rowparts[index].strip()
+            if "levelheight" in part:
+                rowparts[index] = rowparts[index].replace(
+                    "levelheight", str(self.height))
+            if "levelwidth" in part:
+                rowparts[index] = rowparts[index].replace(
+                    "levelwidth", str(self.width))
+            if "barrierwidth" in part:
+                rowparts[index] = rowparts[index].replace(
+                    "barrierwidth", str(self.barrierwidth))
+            if "\n" in part:
+                rowparts[index] = rowparts[index].replace("\n", "")
+        evaluatedlist = []
+        for i in range(1, 5):
+            evaluatedlist.append(eval(rowparts[i]))
+        newbarrier = Barrier(
+            evaluatedlist[0], evaluatedlist[1], evaluatedlist[2], evaluatedlist[3])
+        self.all_sprites.add(newbarrier)
+        self.all_barriers.add(newbarrier)
 
     def refresh(self):
         """Funktio joka lataa tason muutokset. Palauttaa True jos pelaaja voitti tason
