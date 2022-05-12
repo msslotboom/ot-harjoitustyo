@@ -15,10 +15,10 @@ class MainMenu:
 
     def start(self):
         while True:
-            if self.loop():
+            if self._loop():
                 return self.name
 
-    def loop(self):
+    def _loop(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -32,18 +32,19 @@ class MainMenu:
                     self.name = self.name[:-1]
                 else:
                     self.name += event.unicode
-            self.render()
+            self._render()
             self.clock.tick(60)
             pygame.display.flip()
             return False
 
-    def render(self):
+    def _render(self):
         """Rendering of robot, text etc
         """
         self.screen.fill(self.bg_color)
         self._render_exit_text()
         self._render_text_box()
         self._render_name_text()
+        self._render_enter_text()
 
     def _render_exit_text(self):
         esc_text = self.font.render(
@@ -65,3 +66,9 @@ class MainMenu:
         )
         self.screen.blit(box_text, ((self.width/2)-400, self.height/2))
         self.screen.blit(text_box, (self.width/2-200, self.height/2))
+
+    def _render_enter_text(self):
+        esc_text = self.font.render(
+            "Press Enter to start the game!", True, (0, 0, 0)
+        )
+        self.screen.blit(esc_text, ((50, 50)))
