@@ -15,22 +15,27 @@ class MainMenu:
 
     def start(self):
         while True:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_RETURN:
-                        return self.name
+            if self.loop():
+                return self.name
 
-                    if event.key == pygame.K_ESCAPE:
-                        sys.exit()
-                    elif event.key == pygame.K_BACKSPACE:
-                        self.name = self.name[:-1]
-                    else:
-                        self.name += event.unicode
+    def loop(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    return True
+
+                if event.key == pygame.K_ESCAPE:
+                    sys.exit()
+                elif event.key == pygame.K_BACKSPACE:
+                    self.name = self.name[:-1]
+                else:
+                    self.name += event.unicode
             self.render()
             self.clock.tick(60)
             pygame.display.flip()
+            return False
 
     def render(self):
         """Rendering of robot, text etc
