@@ -17,4 +17,7 @@
 | 29.4 | 3   | Lisätty piste-systeemi |
 | 2.5 | 3   | Docstring dokumentaatiota |
 | 3.5 | 6   | Peli sulkeutuu jos painaa esciä, dokumentaatio ja käyttöohje |
-Yhteensä:|  40
+| 10.5 | 4   | Main menu alotus |
+| 12.5 | 4   | Main menu loppuun ja tietokannan aloitus |
+| 15.5 | 6   | Tietokanta ja loppumenu |
+Yhteensä:|  54
