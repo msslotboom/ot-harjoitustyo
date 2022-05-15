@@ -19,3 +19,8 @@
 - Lisätty pistelaskuri
 - Lisätty toiminto että esc napilla peli sulkeutuu ja lisätty teksti joka selittää tämän
 - Muutettu tasoa helpommaksi
+
+## Viikko 7
+-Lisätty main menu
+-Lisätty tietokanta jonne tallennetaan korkein tulos
+-Lisätty loppumenu joka näyttää korkeimmat scoret tasoa varten
