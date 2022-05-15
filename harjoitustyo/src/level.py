@@ -25,7 +25,7 @@ class Level:
         physicsmodule: pelin fysiikkamoduuli joka on physics luokka
     """
 
-    def __init__(self, screen, bg_color) -> None:
+    def __init__(self, screen, bg_color, levelname) -> None:
         """Luokan konstruktori, joka luo uuden tason
 
         Args:
@@ -56,7 +56,7 @@ class Level:
         self.points = 1000000
 
         # Add this as a parameter in init once level selector is ready
-        self._open_file(dirname+"/levels/level1.csv")
+        self._open_file(dirname+f"/levels/{levelname}.csv")
 
         self.physicsmodule = Physics(
             self.robot, self.goal, self.all_sprites, self.all_barriers)
