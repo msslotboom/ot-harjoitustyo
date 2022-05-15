@@ -8,10 +8,10 @@ Pelissä voi valita käyttäjänimen, jota käytetään tallentamaan highscoren.
 - Pelaajan hahmo voi hyppiä 
 - Pelissä on esteitä
 - Pelaaja voittaa jos pääsee vihollisten ja esteiden ohi
-##### Todo
-- Pelissä on vihollisia
 - Peli tallentaa highscoren tietokantaan jokaista pelaajanimeä varten ja näyttää korkeimmat tulokset kun on voittaa pelin
+##### Todo
 ### Jatkokehitysideoita
+- Pelissä on vihollisia
 - Scrollaava taso, eli jos juoksee oikealle niin taso jatkuu siellä
 - Mahdollisuus tehdä omia tasoja
 - Lisää esteitä ja vihollisia
